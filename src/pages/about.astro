@@ -1,0 +1,85 @@
+---
+/**
+ * /about (עליי) — the long-bio page (PLAN.md §2): long bio → הגישה שלי →
+ * שיעורים → secondary photo placeholder → בהמשך → inline CTA → footer. Nav,
+ * Footer and the mobile StickyContactBar come from BaseLayout.
+ *
+ * Copy is the long-bio version from brief.md (not the homepage short bio). The
+ * secondary photo is a clearly-labeled placeholder (public/images/about.jpg),
+ * the same sharp-generated approach as the hero; the real "Yuval by window"
+ * photo replaces it before launch (PLAN.md §4, decision §8.6).
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BioBlock from "../components/BioBlock.astro";
+---
+
+<BaseLayout title="עליי">
+  <!-- Page heading + long bio -->
+  <section class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+    <h1 class="mb-8">עליי</h1>
+    <BioBlock>
+      <p class="m-0">אני יובל צרלין, בן 23, מנגן גיטרה כבר 13 שנה.</p>
+      <p class="m-0">
+        במשך שש שנים ניגנתי בעיקר רוק — סולואים, השירים הגדולים של שנות ה-70,
+        ה-80 וה-90, הכל עם מורים פרטיים. עד שהבנתי שמה שאני באמת רוצה לעשות הוא
+        דבר אחד: פינגרסטייל. מאז אני מקדיש את הזמן שלי לעיבודים של שירים בעברית
+        ובאנגלית, וכותב עיבודים משלי לשירים שאני אוהב.
+      </p>
+    </BioBlock>
+  </section>
+
+  <!-- הגישה שלי — the "complicated vs. complex" teaching approach -->
+  <section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+    <BioBlock>
+      <h2 class="m-0">הגישה שלי</h2>
+      <p class="m-0">כל מה שנראה <em>מסובך</em> הוא בסך הכל <em>מורכב</em>.</p>
+      <p class="m-0">
+        ברגע שמפרקים קטע לחלקים קטנים ועובדים על כל חלק בנפרד, הדברים שחשבת
+        שאינם בהישג ידך הופכים לטבעיים. זו הדרך שבה אני לומד בעצמי, וזו הדרך שאני
+        מלמד אחרים.
+      </p>
+    </BioBlock>
+  </section>
+
+  <!-- שיעורים — who he teaches, frontal-only, at the student's home, מרכז -->
+  <section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+    <BioBlock>
+      <h2 class="m-0">שיעורים</h2>
+      <p class="m-0">
+        אני מלמד מתחילים ואנשים שרוצים להגיע במהירות לרמה שמרשימה חברים ובני
+        משפחה — לא בעוד שנה, בעוד כמה שיעורים. השיעורים מתקיימים פרונטלית בלבד,
+        אצלך בבית, באזור המרכז.
+      </p>
+    </BioBlock>
+  </section>
+
+  <!-- Secondary photo — clearly-labeled placeholder (PLAN.md §4) -->
+  <section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+    <img
+      src="/images/about.jpg"
+      alt="יובל מנגן גיטרה ליד החלון"
+      width="1200"
+      height="1500"
+      loading="lazy"
+      class="block w-full max-w-sm border border-border"
+    />
+  </section>
+
+  <!-- בהמשך — one line teasing the future tab store (text only, no /tabs link) -->
+  <section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+    <BioBlock>
+      <h2 class="m-0">בהמשך</h2>
+      <p class="m-0">מאגר טאבים ועיבודים שלי לרכישה.</p>
+    </BioBlock>
+  </section>
+
+  <!-- Inline CTA — a single sentence linking to /contact, plain text (not a
+       button), to recover intent before the footer (PLAN.md §2.8). -->
+  <section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+    <div class="prose-measure">
+      <p class="m-0">
+        רוצים להתחיל? <a href="/contact">צרו קשר ונקבע שיעור</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

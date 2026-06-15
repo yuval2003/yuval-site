@@ -1,0 +1,26 @@
+---
+/**
+ * /thank-you — the no-JS success page Web3Forms redirects to after a successful
+ * submission (PLAN.md §5: native form, no client JS, success handled by a
+ * redirect). Reachable only after a submit, but it is a real static route so it
+ * works without any JavaScript.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTAButtons from "../components/CTAButtons.astro";
+---
+
+<BaseLayout title="תודה" description="ההודעה נשלחה — יובל יחזור אליכם בהקדם.">
+  <section class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+    <div class="prose-measure flex flex-col gap-6">
+      <h1>תודה — ההודעה נשלחה</h1>
+      <p class="m-0">
+        קיבלתי את הפנייה ואחזור אליכם בהקדם. רוצים להתקדם עכשיו? אפשר גם
+        להתקשר או לשלוח הודעה בוואטסאפ:
+      </p>
+      <CTAButtons align="start" />
+      <p class="m-0">
+        <a href="/">חזרה לדף הבית</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+/**
+ * CTAButtons — the single source for the primary contact action: phone +
+ * WhatsApp buttons side by side, with the plain-text number beneath. Used by
+ * the Hero and (later) /contact (PLAN.md §3).
+ *
+ * Layout: stacked on mobile, horizontal from `sm` up (matches design-tokens.md
+ * §7 worked example). Buttons are terracotta with pure-white labels (~6.4:1).
+ * Icons come from the shared inline SVGs; contact data from src/lib/contact.ts.
+ */
+import PhoneIcon from "./icons/PhoneIcon.astro";
+import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
+import Eng from "./Eng.astro";
+import { phoneDisplay, phoneHref, whatsappHref } from "../lib/contact";
+
+interface Props {
+  /** Horizontal alignment of the button row + number. Default centered. */
+  align?: "center" | "start";
+  class?: string;
+}
+const { align = "center", class: className } = Astro.props;
+
+const itemsAlign = align === "center" ? "items-center" : "items-start";
+const rowJustify = align === "center" ? "sm:justify-center" : "sm:justify-start";
+
+const btn =
+  "inline-flex items-center justify-center gap-2 bg-accent px-8 py-4 font-semibold text-white no-underline hover:bg-accent-hover";
+---
+
+<div class:list={["flex flex-col gap-3", itemsAlign, className]}>
+  <div
+    class:list={[
+      "flex w-full flex-col items-stretch gap-4 sm:flex-row",
+      rowJustify,
+    ]}
+  >
+    <a href={phoneHref} class={btn} aria-label={`התקשרו: ${phoneDisplay}`}>
+      <PhoneIcon />
+      התקשרו
+    </a>
+
+    <a href={whatsappHref} class={btn} aria-label="שלחו הודעה בוואטסאפ">
+      <WhatsAppIcon />
+      וואטסאפ
+    </a>
+  </div>
+
+  <p class="m-0 text-small text-text-muted">
+    <Eng>{phoneDisplay}</Eng>
+  </p>
+</div>

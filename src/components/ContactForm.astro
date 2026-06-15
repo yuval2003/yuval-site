@@ -1,0 +1,110 @@
+---
+/**
+ * ContactForm — the "secondary CTA" (PLAN.md §2.4, §5). Native HTML form that
+ * POSTs straight to Web3Forms; no client JS for submission. Four visible fields
+ * (שם, טלפון, אימייל, הודעה), HTML5 validation only, built-in honeypot, and a
+ * no-JS success via Web3Forms' `redirect` to /thank-you.
+ *
+ * Config:
+ *  - access_key: PUBLIC_WEB3FORMS_KEY (public by design; safe to ship). Falls
+ *    back to a clear placeholder if unset so the build still renders.
+ *  - Destination email is set service-side on Web3Forms (tied to the key), not
+ *    in code — see the TODO_EMAIL token below; the owner wires the real address
+ *    before launch.
+ *
+ * Accessibility: every input has an associated <label> (for/id), required
+ * fields are marked, and the surface tone (no card/shadow) separates the form
+ * from the page per design-tokens.md §1.
+ */
+import { phoneDisplay } from "../lib/contact";
+
+// TODO_EMAIL — destination address is configured on the Web3Forms dashboard
+// against the access key, not here. This token marks the launch checklist item.
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "TODO_WEB3FORMS_KEY";
+const redirectUrl = new URL("/thank-you", Astro.site).href;
+
+const fieldBase =
+  "w-full border border-border bg-bg px-4 py-3 text-text placeholder:text-text-muted";
+const labelBase = "block font-semibold";
+---
+
+<form
+  method="POST"
+  action="https://api.web3forms.com/submit"
+  class="bg-surface border border-border p-6 sm:p-8"
+>
+  <!-- Web3Forms config -->
+  <input type="hidden" name="access_key" value={accessKey} />
+  <input type="hidden" name="subject" value="פנייה חדשה מאתר שיעורי הגיטרה" />
+  <input type="hidden" name="from_name" value="אתר יובל צרלין" />
+  <input type="hidden" name="redirect" value={redirectUrl} />
+
+  <!-- Honeypot — bots fill it, humans never see it. No captcha, no JS. -->
+  <input
+    type="checkbox"
+    name="botcheck"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+    style="position:absolute; left:-9999px; width:0; height:0; overflow:hidden;"
+  />
+
+  <div class="flex flex-col gap-5">
+    <div>
+      <label for="cf-name" class={labelBase}>שם</label>
+      <input
+        id="cf-name"
+        name="name"
+        type="text"
+        required
+        autocomplete="name"
+        class={`mt-2 ${fieldBase}`}
+      />
+    </div>
+
+    <div>
+      <label for="cf-phone" class={labelBase}>טלפון</label>
+      <input
+        id="cf-phone"
+        name="phone"
+        type="tel"
+        required
+        autocomplete="tel"
+        inputmode="tel"
+        class={`mt-2 ${fieldBase}`}
+      />
+    </div>
+
+    <div>
+      <label for="cf-email" class={labelBase}>אימייל</label>
+      <input
+        id="cf-email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        class={`mt-2 ${fieldBase}`}
+      />
+    </div>
+
+    <div>
+      <label for="cf-message" class={labelBase}>הודעה</label>
+      <textarea
+        id="cf-message"
+        name="message"
+        required
+        rows="5"
+        class={`mt-2 ${fieldBase}`}></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="inline-flex items-center justify-center bg-accent px-8 py-4 font-semibold text-white hover:bg-accent-hover"
+    >
+      שליחה
+    </button>
+
+    <p class="m-0 text-small text-text-muted">
+      מעדיפים להתקשר? {phoneDisplay}
+    </p>
+  </div>
+</form>

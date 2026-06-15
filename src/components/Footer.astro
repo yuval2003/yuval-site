@@ -1,0 +1,43 @@
+---
+/**
+ * Footer — repeats the contact action site-wide: phone + WhatsApp buttons, the
+ * plain-text number, and the location line (PLAN.md §2, §3).
+ *
+ * Icons come from the shared inline-SVG components (src/components/icons), and
+ * the contact data from src/lib/contact.ts — the same sources CTAButtons and
+ * StickyContactBar use, so the number/links can never drift between them.
+ */
+import Eng from "./Eng.astro";
+import PhoneIcon from "./icons/PhoneIcon.astro";
+import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
+import { phoneDisplay, phoneHref, whatsappHref, locationLine } from "../lib/contact";
+
+const btn =
+  "inline-flex items-center justify-center gap-2 bg-accent px-8 py-4 font-semibold text-white no-underline hover:bg-accent-hover";
+---
+
+<footer class="mt-24 border-t border-border">
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 py-16 text-center"
+  >
+    <div class="flex w-full flex-col items-stretch gap-4 sm:flex-row sm:justify-center">
+      <a href={phoneHref} class={btn} aria-label={`התקשרו: ${phoneDisplay}`}>
+        <PhoneIcon />
+        התקשרו
+      </a>
+
+      <a href={whatsappHref} class={btn} aria-label="שלחו הודעה בוואטסאפ">
+        <WhatsAppIcon />
+        וואטסאפ
+      </a>
+    </div>
+
+    <p class="m-0 text-small text-text-muted">
+      <Eng>{phoneDisplay}</Eng>
+    </p>
+
+    <p class="m-0 text-small text-text-muted">
+      {locationLine}
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,30 @@
+---
+/**
+ * /contact (צור קשר) — the direct-contact page (PLAN.md §2): h1 → CTAButtons
+ * (phone + WhatsApp, reused from the hero) → ContactForm (same component as the
+ * homepage) → footer. Nav, Footer and the mobile StickyContactBar come from
+ * BaseLayout. The location line is carried by the site-wide Footer, so it is
+ * not repeated in the page body.
+ *
+ * No "מעוניינים בשיעור?" heading above the form — the form is self-explanatory,
+ * matching the homepage.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTAButtons from "../components/CTAButtons.astro";
+import ContactForm from "../components/ContactForm.astro";
+---
+
+<BaseLayout title="צור קשר">
+  <section class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+    <div class="prose-measure flex flex-col gap-8">
+      <h1 class="m-0">צור קשר</h1>
+
+      <!-- Direct contact — same component as the hero CTA -->
+      <CTAButtons align="start" />
+
+      <!-- Passive contact form — same component as the homepage. The location
+           line lives in the site-wide Footer, so it is not repeated here. -->
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>

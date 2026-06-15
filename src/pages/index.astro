@@ -1,0 +1,33 @@
+---
+/**
+ * Homepage (/) — the conversion page: Hero → short bio → contact form. Nav,
+ * Footer and the mobile StickyContactBar come from BaseLayout and are not
+ * duplicated here (PLAN.md §2 homepage wireframe).
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import BioBlock from "../components/BioBlock.astro";
+import ContactForm from "../components/ContactForm.astro";
+---
+
+<BaseLayout title="יובל צרלין">
+  <Hero />
+
+  <!-- Short bio — homepage version from the brief -->
+  <section class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+    <BioBlock>
+      <p class="m-0">אני יובל צרלין, בן 23, מנגן גיטרה כבר 13 שנה.</p>
+      <p class="m-0">
+        במשך שש שנים ניגנתי רוק וסולואים קלאסיים, עד שגיליתי את הפינגרסטייל. היום
+        אני מלחין עיבודים משלי — ומלמד אחרים לנגן.
+      </p>
+    </BioBlock>
+  </section>
+
+  <!-- Contact form — the secondary CTA, below the bio (no form above the fold) -->
+  <section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+    <div class="prose-measure">
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>

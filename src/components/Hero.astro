@@ -1,0 +1,37 @@
+---
+/**
+ * Hero — pure image-background hero (no video markup; PLAN.md §2.2, §4). The
+ * tagline (h1) sits over the photo with the CTAButtons beneath it.
+ *
+ * Per design-tokens.md §7 the tagline uses the dark --text color directly over
+ * the image. That reads cleanly on the light, warm placeholder; when the real
+ * (darker, busier) Magritte photo lands, the text-over-photo contrast should be
+ * revisited — see the build notes. The image is set as a CSS background so it
+ * never reflows the layout and is decorative at the markup level (the tagline
+ * carries the meaning); the real photo will get descriptive Hebrew alt only if
+ * it becomes a content <img>.
+ */
+import CTAButtons from "./CTAButtons.astro";
+
+const tagline = "שיעורי גיטרה — דרך פשוטה ללמוד דברים מורכבים";
+---
+
+<section class="hero">
+  <div class="mx-auto flex max-w-5xl flex-col px-6 py-16 lg:py-24">
+    <h1 class="hero__tagline">{tagline}</h1>
+    <CTAButtons align="start" class="mt-8" />
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--bg);
+    background-image: url("/images/hero.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero__tagline {
+    max-inline-size: 18ch; /* keep the line tight — design-tokens.md §7 */
+  }
+</style>
