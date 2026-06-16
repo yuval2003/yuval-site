@@ -16,3 +16,9 @@ npm-debug.log*
 # macOS
 .DS_Store
 .playwright-mcp/
+
+# Verification screenshots from Claude Code
+step*.png
+
+# Claude Code local settings
+.claude/settings.local.json

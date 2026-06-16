@@ -1,39 +1,24 @@
 ---
 /**
- * Footer — repeats the contact action site-wide: phone + WhatsApp buttons, the
- * plain-text number, and the location line (PLAN.md §2, §3).
- *
- * Icons come from the shared inline-SVG components (src/components/icons), and
- * the contact data from src/lib/contact.ts — the same sources CTAButtons and
- * StickyContactBar use, so the number/links can never drift between them.
+ * Footer — site-wide closing contact, text-only (redesign-v2.md §6). The big
+ * phone+WhatsApp button pair was removed so the accent CTA isn't repeated twice
+ * per page; the footer now carries just the phone number (as a tel: link) and
+ * the location line. Contact data still comes from src/lib/contact.ts — the
+ * same source CTAButtons and StickyContactBar use, so it can never drift.
  */
 import Eng from "./Eng.astro";
-import PhoneIcon from "./icons/PhoneIcon.astro";
-import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
-import { phoneDisplay, phoneHref, whatsappHref, locationLine } from "../lib/contact";
-
-const btn =
-  "inline-flex items-center justify-center gap-2 bg-accent px-8 py-4 font-semibold text-white no-underline hover:bg-accent-hover";
+import { phoneDisplay, phoneHref, locationLine } from "../lib/contact";
 ---
 
 <footer class="mt-24 border-t border-border">
   <div
-    class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 py-16 text-center"
+    class="mx-auto flex max-w-5xl flex-col items-center gap-2 px-6 py-16 text-center"
   >
-    <div class="flex w-full flex-col items-stretch gap-4 sm:flex-row sm:justify-center">
-      <a href={phoneHref} class={btn} aria-label={`התקשרו: ${phoneDisplay}`}>
-        <PhoneIcon />
-        התקשרו
-      </a>
-
-      <a href={whatsappHref} class={btn} aria-label="שלחו הודעה בוואטסאפ">
-        <WhatsAppIcon />
-        וואטסאפ
-      </a>
-    </div>
-
     <p class="m-0 text-small text-text-muted">
-      <Eng>{phoneDisplay}</Eng>
+      מעדיפים להתקשר?
+      <a href={phoneHref} class="font-semibold" aria-label={`התקשרו: ${phoneDisplay}`}>
+        <Eng>{phoneDisplay}</Eng>
+      </a>
     </p>
 
     <p class="m-0 text-small text-text-muted">

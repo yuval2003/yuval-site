@@ -1,33 +1,32 @@
 ---
 /**
- * Homepage (/) — the conversion page: Hero → short bio → contact form. Nav,
- * Footer and the mobile StickyContactBar come from BaseLayout and are not
- * duplicated here (PLAN.md §2 homepage wireframe).
+ * Homepage (/) — the conversion page: Hero → short bio → single CTA to /contact.
+ * The contact form was demoted off the homepage in redesign-v2.md §4 (it lives
+ * on /contact now), so the page ends on intent rather than a wall of inputs.
+ * Nav, Footer and the mobile StickyContactBar come from BaseLayout.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import BioBlock from "../components/BioBlock.astro";
-import ContactForm from "../components/ContactForm.astro";
+import Button from "../components/Button.astro";
 ---
 
 <BaseLayout title="יובל צרלין">
   <Hero />
 
-  <!-- Short bio — homepage version from the brief -->
-  <section class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
-    <BioBlock>
+  <!-- Short bio — centered prose (no longer hugging the inline-start), with a
+       single solid CTA to /contact beneath it (redesign-v2.md §4). -->
+  <section class="mx-auto max-w-3xl px-6 py-16 lg:py-24">
+    <BioBlock class="mx-auto">
       <p class="m-0">אני יובל צרלין, בן 23, מנגן גיטרה כבר 13 שנה.</p>
       <p class="m-0">
         במשך שש שנים ניגנתי רוק וסולואים קלאסיים, עד שגיליתי את הפינגרסטייל. היום
         אני מלחין עיבודים משלי — ומלמד אחרים לנגן.
       </p>
     </BioBlock>
-  </section>
 
-  <!-- Contact form — the secondary CTA, below the bio (no form above the fold) -->
-  <section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
-    <div class="prose-measure">
-      <ContactForm />
+    <div class="mt-10 flex justify-center">
+      <Button href="/contact" variant="solid">צרו קשר</Button>
     </div>
   </section>
 </BaseLayout>

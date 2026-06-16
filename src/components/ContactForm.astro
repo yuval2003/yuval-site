@@ -23,8 +23,12 @@ import { phoneDisplay } from "../lib/contact";
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "TODO_WEB3FORMS_KEY";
 const redirectUrl = new URL("/thank-you", Astro.site).href;
 
+// Field contrast (redesign-v2.md §7): fields sit on bg-bg (--paper, #f4eee2),
+// one step darker than the bg-surface card, so the input area reads clearly
+// against the card. The 1.5px --field-border edge reinforces the separation,
+// and focus turns the border --accent on top of the global :focus-visible ring.
 const fieldBase =
-  "w-full border border-border bg-bg px-4 py-3 text-text placeholder:text-text-muted";
+  "w-full border-[1.5px] border-field-border bg-bg px-4 py-3 text-text placeholder:text-text-muted focus:border-accent";
 const labelBase = "block font-semibold";
 ---
 
