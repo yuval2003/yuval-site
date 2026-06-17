@@ -1,0 +1,82 @@
+---
+/**
+ * Faq (E7) — minimalist FAQ accordion at the foot of the home page, immediately
+ * before the closing "צרו קשר" CTA (spec §5). Built on native <details>/<summary>
+ * so it works with no JS and is keyboard-accessible by default; each item opens
+ * and closes independently.
+ *
+ * Modular: add a { q, a } entry to the `faqs` array below and it renders — no
+ * markup changes needed (2–3 more Q&As are expected later).
+ *
+ * Affordance: the native disclosure triangle is removed and replaced with a thin
+ * +/− glyph at the inline-END of each question row (the left edge under RTL),
+ * which flips to − when its <details> is [open]. Heebo + RTL are inherited from
+ * the layout; no icon library, no gaudy chevrons.
+ */
+const faqs = [
+  {
+    q: `אין לי רקע מוזיקלי — זה מתאים לי להתחיל מאפס?`,
+    a: `כן. רוב התלמידים שלי מתחילים בלי שום רקע. לא צריך "כישרון" — מפרקים כל קושי לחלקים קטנים, וההתקדמות מגיעה מהר וטבעי.`,
+  },
+  {
+    q: `השיעורים מתאימים גם לילדים?`,
+    a: `בהחלט. אני מלמד ילדים ומבוגרים כאחד, והשיטה מתאימה את עצמה לגיל ולרמה של כל אחד.`,
+  },
+  {
+    q: `יש חשש לאבד עניין אחרי כמה שיעורים — איך שומרים על המוטיבציה?`,
+    a: `זה הסוד הכי פשוט: כשמנגנים את מה שאוהבים, אי אפשר להפסיק. בשיטת הלימוד שלי הגיטרה הופכת מ"משימה" ל"מתי השיעור הבא?".`,
+  },
+  {
+    q: `הליווי מוגבל רק לזמן השיעור?`,
+    a: `לא. יש לכם קו פתוח אליי גם בין המפגשים — אפשר לשלוח סרטונים לפידבק, לשאול שאלות, ולהגיד מראש על מה בא לכם לעבוד בשיעור הבא, כדי שלא נבזבז זמן.`,
+  },
+  {
+    q: `צריך לדעת לקרוא תווים?`,
+    a: `לא חובה. לומדים בעיקר דרך הנגינה עצמה, ומי שרוצה להעמיק בתיאוריה ובקריאת תווים — נלמד גם את זה.`,
+  },
+  {
+    q: `כמה זה עולה?`,
+    a: `המחיר נקבע אישית ומשתנה לפי תדירות השיעורים והמרחק. השאירו פרטים ואחזור אליכם עוד היום עם כל המידע.`,
+  },
+];
+---
+
+<section class="mx-auto max-w-3xl px-6 py-16 lg:py-24" aria-labelledby="faq-title">
+  <h2 id="faq-title" class="mb-10">שאלות נפוצות</h2>
+
+  <div class="border-t border-border">
+    {
+      faqs.map((item) => (
+        <details class="faq-item border-b border-border">
+          <summary class="flex cursor-pointer items-center justify-between gap-6 py-5">
+            <span class="font-semibold text-text">{item.q}</span>
+            <span
+              class="faq-marker shrink-0 text-3xl font-normal leading-none text-brass"
+              aria-hidden="true"
+            />
+          </summary>
+          <p class="prose-measure m-0 pb-6 text-text">{item.a}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  /* Drop the native disclosure triangle on both engines so only the +/− shows. */
+  .faq-item > summary {
+    list-style: none;
+  }
+  .faq-item > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* +/− affordance driven purely by the [open] state — no JS. U+2212 (minus)
+     matches the plus's visual weight better than a hyphen. */
+  .faq-marker::before {
+    content: "+";
+  }
+  .faq-item[open] .faq-marker::before {
+    content: "\2212";
+  }
+</style>

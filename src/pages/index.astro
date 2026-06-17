@@ -7,12 +7,17 @@
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+import Offerings from "../components/Offerings.astro";
 import BioBlock from "../components/BioBlock.astro";
+import Faq from "../components/Faq.astro";
 import Button from "../components/Button.astro";
 ---
 
 <BaseLayout title="יובל צרלין">
   <Hero />
+
+  <!-- C2 "מה אני מציע" — three watermark-digit blocks between hero and bio. -->
+  <Offerings />
 
   <!-- Short bio — centered prose (no longer hugging the inline-start), with a
        single solid CTA to /contact beneath it (redesign-v2.md §4). -->
@@ -24,8 +29,15 @@ import Button from "../components/Button.astro";
     <div class="mt-6 flex justify-center">
       <Button href="/about" variant="ghost">קראו עוד עליי</Button>
     </div>
+  </section>
 
-    <div class="mt-10 flex justify-center">
+  <!-- E7 FAQ accordion — sits at the foot of the page, immediately before the
+       closing contact CTA (spec §5). -->
+  <Faq />
+
+  <!-- Closing contact CTA -->
+  <section class="mx-auto max-w-3xl px-6 pb-16 lg:pb-24">
+    <div class="flex justify-center">
       <Button href="/contact" variant="solid">צרו קשר</Button>
     </div>
   </section>

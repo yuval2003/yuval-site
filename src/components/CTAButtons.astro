@@ -1,13 +1,13 @@
 ---
 /**
- * CTAButtons — the primary contact action: a solid phone CTA (התקשרו) paired
- * with a ghost WhatsApp action (וואטסאפ), with the plain-text number beneath.
- * Used by the Hero and /contact (redesign-v2.md §6).
+ * CTAButtons — the primary contact action: a solid WhatsApp CTA (וואטסאפ)
+ * paired with a ghost phone action (התקשרו), with the plain-text number beneath.
+ * Used by the Hero and /contact (redesign-v2.md §6; spec C3).
  *
- * Button hierarchy: the phone action is the single solid (accent) button; the
- * WhatsApp action is the ghost variant — see Button.astro. Layout is stacked on
- * mobile, horizontal from `sm` up. Icons come from the shared inline SVGs;
- * contact data from src/lib/contact.ts.
+ * Button hierarchy: WhatsApp is the single solid (accent) button — the visually
+ * dominant action; the phone action is the ghost variant — see Button.astro.
+ * Layout is stacked on mobile, horizontal from `sm` up. Icons come from the
+ * shared inline SVGs; contact data from src/lib/contact.ts.
  */
 import Button from "./Button.astro";
 import PhoneIcon from "./icons/PhoneIcon.astro";
@@ -36,19 +36,19 @@ const numberColor = tone === "light" ? "text-bg/75" : "text-text-muted";
       rowJustify,
     ]}
   >
-    <Button href={phoneHref} variant="solid" ariaLabel={`התקשרו: ${phoneDisplay}`}>
-      <PhoneIcon />
-      התקשרו
+    <Button href={whatsappHref} variant="solid" ariaLabel="שלחו הודעה בוואטסאפ">
+      <WhatsAppIcon />
+      וואטסאפ
     </Button>
 
     <Button
-      href={whatsappHref}
+      href={phoneHref}
       variant="ghost"
       tone={tone}
-      ariaLabel="שלחו הודעה בוואטסאפ"
+      ariaLabel={`התקשרו: ${phoneDisplay}`}
     >
-      <WhatsAppIcon />
-      וואטסאפ
+      <PhoneIcon />
+      התקשרו
     </Button>
   </div>
 
