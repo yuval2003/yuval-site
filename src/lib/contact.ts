@@ -10,4 +10,4 @@ export const phoneHref = "tel:0527071952";
 export const whatsappHref = "https://wa.me/972527071952";
 
 /** Footer / contact location line — frontal lessons, at the student's home, מרכז. */
-export const locationLine = "שיעורים פרונטליים · אצלך בבית · אזור המרכז";
+export const locationLine = "שיעורים פרונטליים · אצלכם בבית · אזור בקעת אונו והמרכז";
