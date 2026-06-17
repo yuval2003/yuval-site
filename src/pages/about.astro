@@ -1,7 +1,7 @@
 ---
 /**
  * /about (עליי) — the long-bio page (redesign-v2.md §4): h1 → bio + photo as a
- * two-column band (stacks on mobile) → הגישה שלי → שיעורים → בהמשך → inline CTA.
+ * two-column band (stacks on mobile) → הגישה שלי → שיעורים → inline CTA.
  * Prose blocks are centered (mx-auto max-w-3xl) so they no longer hug the
  * inline-start edge. Nav, Footer and the mobile StickyContactBar come from
  * BaseLayout.
@@ -70,8 +70,8 @@ import BioBlock from "../components/BioBlock.astro";
       <h2 class="m-0">הגישה שלי</h2>
       <BioBlock>
         <p class="m-0">
-          ברגע שמפרקים קטע לחלקים קטנים ועובדים על כל חלק בנפרד, הדברים שחשבת
-          שאינם בהישג ידך הופכים לטבעיים. זו הדרך שבה אני לומד בעצמי, וזו הדרך
+          ברגע שמפרקים קטע לחלקים קטנים ועובדים על כל חלק בנפרד, הדברים שחשבתם
+          שאינם בהישג ידכם הופכים לטבעיים. זו הדרך שבה אני לומד בעצמי, וזו הדרך
           שאני מלמד אחרים.
         </p>
       </BioBlock>
@@ -84,20 +84,10 @@ import BioBlock from "../components/BioBlock.astro";
       <h2 class="m-0">שיעורים</h2>
       <BioBlock>
         <p class="m-0">
-          אני מלמד מתחילים ואנשים שרוצים להגיע במהירות לרמה שמרשימה חברים ובני
-          משפחה — לא בעוד שנה, בעוד כמה שיעורים. השיעורים מתקיימים פרונטלית בלבד,
-          אצלכם בבית, באזור בקעת אונו והמרכז.
+          אני מעביר שיעורים פרונטליים אחד-על-אחד, המותאמים למתחילים ולמי שרוצה
+          לדייק את הטכניקה. השיעורים מתקיימים אצלכם בבית, באזור בקעת אונו והמרכז,
+          ובנויים כדי לתת לכם כלים פרקטיים כבר מהרגע הראשון.
         </p>
-      </BioBlock>
-    </div>
-  </section>
-
-  <!-- בהמשך — sidenote grid -->
-  <section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
-    <div class="grid gap-y-3 md:grid-cols-[1fr_3fr] md:gap-x-16 md:gap-y-0">
-      <h2 class="m-0">בהמשך</h2>
-      <BioBlock>
-        <p class="m-0">מאגר טאבים ועיבודים שלי לרכישה.</p>
       </BioBlock>
     </div>
   </section>
